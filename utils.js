@@ -86,15 +86,15 @@ var utils = {
                 for (var i = 1, l = matches.length; i < l; i++) {
                     var match = depad(matches[i]),
                         order_item = order[i - 1],
-                        methodx = order_item.method,
+                        method = order_item.method,
                         modifier = order_item.modifier;
 
                     if (modifier) {
                         match = modifier(match);
                     }
 
-                    if (methodx) {
-                        date["setUTC" + methodx](match);
+                    if (method) {
+                        date["setUTC" + method](match);
                     }
                 }
 
