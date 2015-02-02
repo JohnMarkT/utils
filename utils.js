@@ -31,7 +31,7 @@ var utils = {
         dateParse: function () {
             var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?/g;
 
-            return function (str, mask) {
+            return function (str, mask, offset) {
                 var date = new Date(0),
                     matches = [],
                     order = [],
@@ -96,6 +96,10 @@ var utils = {
                     if (method) {
                         date["setUTC" + method](match);
                     }
+                }
+
+                if (offset) {
+                    date.setTime(date.getTime() + (+offset * 60 * 1000));
                 }
 
                 return date;
