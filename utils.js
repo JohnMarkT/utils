@@ -9,7 +9,7 @@ var utils = {
                     return val;
                 };
 
-            return function (date, mask) {
+            return function (date, mask, offset) {
                 var date = Date.parse(date) ? new Date(date) : utils.parseISO8601(date), // parse date for IE8 since it's so lame
                     d = date.getDate(),
                     m = date.getMonth(),
@@ -96,6 +96,10 @@ var utils = {
                     if (method) {
                         date["setUTC" + method](match);
                     }
+                }
+
+                if (offset) {
+                    date.setTime(date.getTime() + (+offset * 60 * 1000));
                 }
 
                 return date;
